@@ -1,0 +1,17 @@
+<div class="row">
+  <% @products.each do |product| %>
+    <div class="col-md-4 col-sm-12">
+      <div class="card mb-4" style="width: 22rem;">
+        <%= image_tag product.photo, class: 'card-img-top' %>
+        <div class="card-body">
+          <h5 class="card-title"><%= product.name %></h5>
+          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+          <p class="card-text">$<%= product.price %></p>
+          <a href="<%= product_orders_path(product) %>" data-method="post" class="btn btn-info">
+            <i class="fas fa-cart-plus"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
