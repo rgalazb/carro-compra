@@ -4,7 +4,7 @@ class OrdersController < ApplicationController
   def index
     @orders = current_user.cart
     @total = @orders.map {|order| order.product.price * order.quantity}.sum
-    @cantidad = current_user.orders.inject(0) {|sumar, order| sumar += order.quantity }
+    @cantidad = current_user.cart.inject(0) { |sum, order| sum += order.quantity }
   end
 
   def create
@@ -15,9 +15,10 @@ class OrdersController < ApplicationController
       redirect_to root_path, notice: 'El producto se ha agregado al carrito'
     else
       @order = Order.new()
-      @order.product = Product.find(params[:product_id])
+      @product = Product.find(params[:product_id])
+      @order.product = @product
       @order.user = current_user
-
+      @order.price = @product.price
       if @order.save
         redirect_to root_path, notice: 'El producto se ha agregado al carrito'
       else
