@@ -11,7 +11,12 @@
     <% end %>
   </ul>
   <div class="collapse navbar-collapse" id="navbarNav">
+
     <ul class="navbar-nav ml-auto">
+      <form class="form-inline">
+        <input class="form-control mr-sm-2" type="search" placeholder="Buscar..." aria-label="Search" id="buscar">
+        <button class="btn btn-info my-2 my-sm-0" type="submit"><i class="fas fa-search"></i></button>
+      </form>
       <% if user_signed_in? %>
         <li class="nav-item active">
           <a class="nav-link" href="#"><%= current_user.email %> <span class="sr-only">(current)</span></a>
